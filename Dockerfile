@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
     mysql-client \
     ocaml \
     expect \
+    msmtp \
     && curl -L https://github.com/bcpierce00/unison/archive/2.48.4.tar.gz | tar zxv -C /tmp && \
              cd /tmp/unison-2.48.4 && \
              sed -i -e 's/GLIBC_SUPPORT_INOTIFY 0/GLIBC_SUPPORT_INOTIFY 1/' src/fsmonitor/linux/inotify_stubs.c && \
@@ -84,6 +85,8 @@ ADD conf/entrypoint.sh /usr/local/bin/entrypoint.sh
 ADD conf/check-unison.sh /usr/local/bin/check-unison.sh
 RUN chmod +x /usr/local/bin/unison.sh && chmod +x /usr/local/bin/entrypoint.sh \
     && chmod +x /usr/local/bin/check-unison.sh
+
+ADD conf/smtp/msmtprc /etc/msmtprc
 
 ENV PATH $PATH:/home/magento2/scripts/:/home/magento2/.magento-cloud/bin
 ENV PATH $PATH:/var/www/magento2/bin

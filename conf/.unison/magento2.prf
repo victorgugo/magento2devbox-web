@@ -7,6 +7,9 @@ path = magento2
 path = magento2
 
 # Params
+perms = 0
+owner = false
+group = false
 fastercheckUNSAFE = true
 ignorelocks = true
 numericids = false
